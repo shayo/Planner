@@ -1,0 +1,19 @@
+X=imread('D:\Atlas\Pictures\Test_rect.bmp');
+
+figure(1);
+clf;
+imshow(X,[]);
+impixelinfo
+[x,y]=ginput(1)
+round(x)
+y=428 -> DV: 50
+y=664->DV:40
+y=1370-> DV: 10 
+y=1606 -> Dv 0
+y=1841 -> DV: -10
+
+x=127-9 -> ML = 0
+x=176 -> ML = 2
+x=224 -> ML =4
+x=270 -> ML = 6
+x=316 -> ML = 8

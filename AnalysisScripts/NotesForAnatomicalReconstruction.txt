@@ -1,0 +1,54 @@
+15. Fill (start here for wm edits) (1min)
+     creates hemispheric cutting planes and fills white matter with specific values for subsequent surface tesselation
+
+This creates the subcortical mass from which the orig surface is created. 
+The mid brain is cut from the cerebrum, and the hemispheres are cut from each other. 
+The left hemisphere is binarized to 255. 
+The right hemisphere is binarized to 127. 
+The input is mri/wm.mgz and the output is mri/filled.mgz. 
+Calls mri_fill. If the cut fails, then seed points can be supplied 
+(see -cc-crs, -pons-crs, -lh-crs, -rh-crs). 
+The actual points used for the cutting planes in the corpus callosum and pons can be found in scripts/ponscc.cut.log.
+The stage -autorecon2-wm begins here. This is the last stage of volumetric processing. 
+If -noaseg is used, then aseg.mgz is not used by mri_fill.     
+
+16. Tessellation (begins per-hemisphere operations) (<1 min)
+This is the step where the orig surface (ie, surf/?h.orig.nofix) is created. The surface is created by covering the filled hemisphere with triangles. Runs mri_tessellate. The places where the points of the triangles meet are called vertices. Creates the file surf/?h.orig.nofix Note: the topology fixer will create the surface ?h.orig.
+
+
+17. Smooth1 < 1 min
+    Smooths the tessellation of a cortical surface
+
+18. Inflate1 (1 min)
+Inflation of the surf/?h.smoothwm(.nofix) surface to create surf/?h.inflated. 
+The inflation attempts to minimize metric distortion so that distances and areas are perserved (ie, the surface is not stretched). 
+In this sense, it is like inflating a paper bag and not a balloon. 
+Inflate1 is the step just after tessellation, and inflate2 is the step just after topology fixing. 
+Calls mris_inflate. Creates ?h.inflated, ?h.sulc, ?h.curv, and ?h.area.
+
+19. QSphere (16 min)
+
+This is the initial step of automatic topology fixing. It is a quasi-homeomorphic spherical 
+transformation of the inflated surface designed to localize topological defects for the subsequent automatic topology fixer.
+ Calls mris_sphere. Creates surf/?h.qsphere.nofix.
+
+20. Automatic Topology Fixer (1-9 hours!!!!)
+Finds topological defects (ie, holes in a filled hemisphere) using surf/?h.qsphere.nofix,
+ and changes the orig surface (surf/?h.orig.nofix) to remove the defects. 
+Changes the number of vertices. All the defects will be removed, but the user should check the orig surface in 
+the volume to make sure that it looks appropriate. 
+Calls mris_fix_topology. Creates surf/?h.orig (by iteratively fixing surf/?h.orig.nofix).
+
+
+21. Final Surfs (start here for brain edits for pial surf) (1-2 hours!!!)
+Creates the ?h.white and ?h.pial surfaces as well as the thickness file (?h.thickness) and 
+curvature file (?h.curv). The white surface is created by "nudging" the orig surface so that 
+it closely follows the white-gray intensity gradient as found in the T1 volume. 
+The pial surface is created by expanding the white surface so that it closely follows the gray-CSF intensity gradient as found in the T1 volume. 
+Calls mris_make_surfaces.
+
+22. Smooth2
+
+
+23. Inflate2
+

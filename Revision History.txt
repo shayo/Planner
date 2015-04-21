@@ -1,0 +1,91 @@
+Revision 99 (30/Apr/2014)
+--------------------------
+Fixed a small bug in enabling/disabling markers during chamber planning.
+
+Revision 95 (18/Apr/2014)
+--------------------------
+Noticed another small bug in visualization in chamber mode. Now fixed as well.
+
+Revision 94 (18/Apr/2014)
+---------------------------
+Fixed many critical bugs in the stereotax to MRI registeration algorithm. This may have resulted in poor chamber placement in the past and was related to incorrect CM to mm conversion.
+Added support for Solidworks 2014
+Added a missing MEX file for linux.
+
+Revision 93 (19/Feb/2014)
+---------------------------
+Remeasured grid hole diameter on test grids and adjuster number for solidworks export function.
+
+Revision 92 (13/Feb/2014)
+------------------------
+Fixed an issue related to switching between different anatomical volumes and resetting the view.
+
+Revision 90 (1/10/2014)
+------------------------
+Revived the xml grid export to open ephys.
+
+Revision 89 (1/1/2014)
+-----------------------
+Lost some uncommitted changes to Solid work export....
+
+
+Revision 88
+------------
+Fixed a small bug when closing the export to solidworks GUI
+
+Revision 87
+-------------
+Added support for exporting grids using Solidworks 2013
+
+Revision 85
+-----------
+Added option to export a grid for Kofiko's Stat Server
+
+Revision 84
+-----------
+
+Updated analysis scripts
+Added solid works export window with precise information for Projet 3500
+Updated solid works grid template (larger diameter, for Projet 3500)
+
+
+25 Dec 2012
+--------------
+Major revision in internal data structures.
+Fixed the orientation problem 
+Solidwork export now works for version 2010-2012
+
+
+
+11 Jun 2012
+--------------
+
+Added support for used-annotated ROIs
+Added supprot for free-surfer surfaces
+Added more functionality to the API
+
+
+3 Jun 2012
+--------------
+Major revision in code. Moved everything out of callbacks to seaprate functions.
+Started to add support for freesurfer surfaces created using the new unconform technique
+
+
+
+30 Apr 2012 
+-------------
+Revived stereotactic helper gui. It serves as a registration tool to move/rotate a volume and bring it to stereotactic coordinates.
+
+15 March 2012
+-------------
+Introduced export to Solidworks. This option allows to automatically generate a solid word model file of a grid
+that can then be fabricated using 3D printers.
+
+1 March 2012
+-------------
+General Circular Grids are now available.
+The general circular grid model allows each grid hole to be rotated/tilted in a different direction, thus
+allowing multiple brain regions to be targeted using a single chamber.
+
+Prior to that:
+1) Added an option to export an entire series of images as a JPG file.

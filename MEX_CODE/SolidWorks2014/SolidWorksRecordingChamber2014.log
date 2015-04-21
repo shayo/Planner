@@ -1,0 +1,20 @@
+﻿Build started 4/12/2014 1:22:28 AM.
+     1>Project "C:\Users\Shay\SkyDrive\Planner\MEX_CODE\SolidWorks2014\SolidWorksRecordingChamber2014.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /IC:\MATLAB\R2013b_x64\\extern\include /Zi /nologo /W3 /WX- /O2 /Ob1 /D MX_COMPAT_32 /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D SELECTLABELS_EXPORTS /D _VC80_UPGRADE=0x0600 /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\x64\Release\\" /Fd".\x64\Release\vc110.pdb" /Gd /TP /errorReport:prompt SolidWorksRecordingChamber.cpp
+         SolidWorksRecordingChamber.cpp
+     1>c:\users\shay\skydrive\planner\mex_code\solidworks2014\SolidWorksRecordingChamber.h(8): warning C4278: 'GetOpenFileName': identifier in type library 'sldworks.tlb' is already a macro; use the 'rename' qualifier
+     1>c:\users\shay\skydrive\planner\mex_code\solidworks2014\SolidWorksRecordingChamber.h(8): warning C4278: 'PropertySheet': identifier in type library 'sldworks.tlb' is already a macro; use the 'rename' qualifier
+     1>SolidWorksRecordingChamber.cpp(309): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(C:\Users\Shay\SkyDrive\Planner\MEX_CODE\SolidWorks2014\x64\Release\SolidWorksRecordingChamber2014.dll) does not match the Linker's OutputFile property value (C:\Users\Shay\SkyDrive\Planner\MEX\Win_x64\fndllSolidWorksRecordingChamber2014.mexw64). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1138,5): warning MSB8012: TargetExt(.dll) does not match the Linker's OutputFile property value (.mexw64). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(SolidWorksRecordingChamber2014) does not match the Linker's OutputFile property value (fndllSolidWorksRecordingChamber2014). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\MEX\Win_x64\fndllSolidWorksRecordingChamber2014.mexw64" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\MATLAB\R2013b_x64\\extern\lib\win64\microsoft odbc32.lib odbccp32.lib libmx.lib libmex.lib libmat.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:".\SolidWorksRecordingChamber.def" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\x64\Release\fndllSolidWorksRecordingChamber.pdb" /TLBID:1 /DYNAMICBASE:NO /IMPLIB:"x64\Release\SolidWorksRecordingChamber2014.lib" /MACHINE:X64 /DLL .\x64\Release\SolidWorksRecordingChamber.obj
+            Creating library x64\Release\SolidWorksRecordingChamber2014.lib and object x64\Release\SolidWorksRecordingChamber2014.exp
+         SolidWorksRecordingChamber2014.vcxproj -> C:\Users\Shay\SkyDrive\Planner\MEX_CODE\SolidWorks2014\x64\Release\SolidWorksRecordingChamber2014.dll
+     1>Done Building Project "C:\Users\Shay\SkyDrive\Planner\MEX_CODE\SolidWorks2014\SolidWorksRecordingChamber2014.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.19

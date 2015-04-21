@@ -1,0 +1,3 @@
+function fnSelectSurface()
+%fnInvalidateDerivedSurfaceList();
+return;

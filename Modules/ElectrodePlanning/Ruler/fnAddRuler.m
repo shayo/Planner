@@ -1,0 +1,3 @@
+function fnAddRuler()
+fnCreateRulerObject();
+return;

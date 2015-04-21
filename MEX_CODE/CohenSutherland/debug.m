@@ -1,0 +1,6 @@
+addpath('D:\Code\Doris\MRI\Planning\MEX');
+load('D:\Code\Doris\MRI\Planning\Bug.mat');
+
+[afX0, afX1, afY0, afY1, abIntersect] = fndllCohenSutherland(apt2fP1(1,:), apt2fP2(1,:), apt2fP1(2,:), apt2fP2(2,:),...
+    -strctCrossSection.m_fHalfWidthMM,strctCrossSection.m_fHalfWidthMM,...
+     -strctCrossSection.m_fHalfHeightMM,strctCrossSection.m_fHalfHeightMM);

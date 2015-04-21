@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Planner Configuration -->
+
+<Config>
+    <m_acModules>
+        <m_strctModule>
+            <m_strctGeneral
+                m_strName = "Electrode Planning"
+                m_strInitFunc = "fnElectrodePlanningNewInit"
+                m_strCallbackFunc = "fnElectrodePlanningNewCallback"
+            > </m_strctGeneral>
+            
+            <m_acStereoModels>
+                  <m_strctModel>
+                    <m_strctGeneral
+                        m_strModelName = "Kopf 1430"
+                    > </m_strctGeneral>
+                    <m_strctArm
+                        m_strName = "Left Arm"
+                        m_strModelFunction =  "fnKopf1460LeftArm"
+                    > </m_strctArm>
+                    <m_strctArm
+                        m_strName = "Right Arm"
+                        m_strModelFunction =  "fnKopf1460RightArm"
+                    > </m_strctArm>
+
+                 <m_strctArm
+                        m_strName = "Right Arm (Fine calibrated)"
+                        m_strModelFunction =  "fnKopf1460RightArm_MO"
+                 > </m_strctArm>
+
+                </m_strctModel>
+                
+                <m_strctModel>
+                    <m_strctGeneral
+                        m_strModelName = "Kopf 900A"
+                    > </m_strctGeneral>
+                    <m_strctArm
+                        m_strName = "Left Arm"
+                        m_strModelFunction =  "fnKopf900ALeftArmMod"
+                    > </m_strctArm>
+                </m_strctModel>
+            </m_acStereoModels>
+            
+            
+            <m_acChamberModels>
+                   <m_strctModel
+                        m_strModelName = "Crist 0 Deg"
+                        m_strModelFunc = "fnBuildCristChamberModel(0)"
+                    > </m_strctModel>
+
+                    <m_strctModel
+                        m_strModelName = "Rectangular 20 mm"
+                        m_strModelFunc = "fnBuildRectangularChamberModel(20)"
+                    > </m_strctModel>
+                    
+                   <m_strctModel
+                        m_strModelName = "Crist 35 Deg"
+                        m_strModelFunc = "fnBuildCristChamberModel(30)"
+                    > </m_strctModel>
+               
+                   <m_strctModel
+                        m_strModelName = "Plastic1 Cannula"
+                        m_strModelFunc = "fnBuildCannulaChamberModel"
+                    > </m_strctModel>
+                    
+          <m_strctModel
+                        m_strModelName = "Kopf 1460 Tip"
+                        m_strModelFunc = "fnBuildManipulatorTipModel"
+                    > </m_strctModel>                    
+            </m_acChamberModels>
+            
+            
+           <m_acGridModels>
+               
+               <m_strctModel>
+                   <m_strctParams
+                       m_strModelName = "Standard Circular"
+                       m_strDefine = "fnDefineGridModel_Standard"
+                       m_strBuildModel = "fnBuildGridModel_Standard"
+                       m_strBuildMesh = "fnBuildGridMesh_Standard"
+                       m_strDraw2D = "fnDraw2DGridModel_Standard"
+                       m_strGUI = "GridHelper"
+                   > </m_strctParams>
+                   
+                   <m_strctSpecialInstance 
+                       m_strName = "Crist"
+                       m_strHoleDist = "1.0"
+                       m_strHoleDiam = "0.75"
+                       m_strGridInnerDiam = "16.6"
+                   > </m_strctSpecialInstance>
+                   
+                   <m_strctSpecialInstance 
+                       m_strName = "CIT"
+                       m_strHoleDist = "1.0"
+                       m_strHoleDiam = "0.75"
+                       m_strGridInnerDiam = "18"
+                   > </m_strctSpecialInstance>
+                   
+                   
+                   <m_strctSpecialInstance 
+                       m_strName = "Shay 10 Deg v1.0"
+                       m_strPhi = "10"
+                       m_strHoleDist = "1.0154"
+                       m_strHoleDiam = "0.75"
+                       m_strGridInnerDiam = "18"
+                   > </m_strctSpecialInstance>
+                   
+               </m_strctModel>
+           
+               
+               <m_strctModel>
+                   <m_strctParams
+                       m_strModelName = "Dual Circular"
+                       m_strDefine = "fnDefineGridModel_DualCircular"
+                       m_strBuildModel = "fnBuildGridModel_DualCircular"
+                       m_strBuildMesh = "fnBuildGridMesh_DualCircular"
+                       m_strDraw2D = "fnDraw2DGridModel_DualCircular"
+                       m_strGUI = "GridHelper"
+                   > </m_strctParams>
+                </m_strctModel>
+               
+            <m_strctModel>
+                   <m_strctParams
+                       m_strModelName = "Generic Circular"
+                       m_strDefine = "fnDefineGridModel_Generic"
+                       m_strBuildModel = "fnBuildGridModel_Generic"
+                       m_strBuildMesh = "fnBuildGridMesh_GenericCircular"
+                       m_strDraw2D = "fnDraw2DGridModel_Generic"
+                       m_strGUI = "GenericCircularGirdGUI"
+                   > </m_strctParams>
+                </m_strctModel>
+                
+               
+           </m_acGridModels>
+        
+            
+            
+        </m_strctModule>
+        
+        
+        
+        
+   
+               
+        <m_strctModule>
+            <m_strctGeneral
+                m_strName = "Atlas Marker"
+                m_strInitFunc = ""
+                m_strCallbackFunc = "AtlasMarker"
+            > </m_strctGeneral>
+            
+        </m_strctModule>
+        
+        
+    </m_acModules>
+    
+    <m_strctGUI
+        m_strDefaultFontName = "Helvetica"
+    > </m_strctGUI>
+    
+</Config>
