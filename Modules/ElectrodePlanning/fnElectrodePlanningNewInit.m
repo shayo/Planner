@@ -695,6 +695,7 @@ uimenu(strctPanel.m_hMarkerMenu, 'Label', 'Rotate Marker', 'Callback', {@fnCallb
 
 strctPanel.m_hViewMenu = uimenu(strctPanel.m_hMenu, 'Label', 'Reset View', 'Separator','on');
 uimenu(strctPanel.m_hViewMenu, 'Label', 'Default View', 'Callback', {@fnCallback,'SetDefaultView'}, 'Separator','on');
+% uimenu(strctPanel.m_hViewMenu, 'Label', 'Stereotax View', 'Callback', {@fnCallback,'SetStereotaxView'}, 'Separator','on');
 uimenu(strctPanel.m_hViewMenu, 'Label', 'Atlas View', 'Callback', {@fnCallback,'SetAtlasView'}, 'Separator','on');
 uimenu(strctPanel.m_hViewMenu, 'Label', 'Set this as default view', 'Callback', {@fnCallback,'SetNewDefaultView'}, 'Separator','on');
 

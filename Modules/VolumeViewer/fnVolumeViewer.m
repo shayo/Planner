@@ -101,7 +101,7 @@ return;
 
 
 function fnSetNewMouseMode(a,b,handles, strOp)
-fprintf('Setting mode : %s\n',strOp);
+% fprintf('Setting mode : %s\n',strOp);
 setappdata(handles.figure1,'strMouseMode',strOp);
 return;
 
@@ -124,7 +124,11 @@ iRotationAxis = getappdata(handles.figure1,'iRotationAxis');
 pt3fCrosshair = getappdata(handles.figure1,'pt3fCrosshair');
 a3MainVolume = getappdata(handles.figure1,'a3MainVolume');
 pt3fCrosshair(iRotationAxis) = pt3fCrosshair(iRotationAxis) + fDelta;
-pt3fCrosshair = max([1,1,1],min(pt3fCrosshair, size(a3MainVolume)));
+sz = size(a3MainVolume);
+if length(sz) < 3
+    sz(3) = 1;
+end
+pt3fCrosshair = max([1,1,1],min(pt3fCrosshair,sz ));
 setappdata(handles.figure1,'pt3fCrosshair',pt3fCrosshair);
 fnInvalidate(handles);
 fnUpdateStatusLine(handles);
@@ -236,7 +240,7 @@ strctMouseOp.m_strAction = 'Down';
 strctMouseOp.m_pt2fPos = fnGetMouseCoordinate(strctMouseOp.m_hAxes);
 strctMouseOp.m_strModeWhenDown = getappdata(handles.figure1,'strMouseMode');
 
-fnPrintMouseOp(strctMouseOp);
+% fnPrintMouseOp(strctMouseOp);
 
 setappdata(handles.figure1,'bMouseDown',true);
 
@@ -275,7 +279,7 @@ strctMouseOp.m_strAction = 'Up';
 [strctMouseOp.m_hAxes, strctMouseOp.m_strWindow] = fnGetActiveWindow(handles);
 strctMouseOp.m_pt2fPos = fnGetMouseCoordinate(strctMouseOp.m_hAxes);
 
-fnPrintMouseOp(strctMouseOp);
+% fnPrintMouseOp(strctMouseOp);
 setappdata(handles.figure1,'strctMouseCurr',strctMouseOp);
 setappdata(handles.figure1,'strctMouseUp',strctMouseOp);
 
@@ -324,11 +328,15 @@ return;
 
 
 function I = fnIntensityWindowTransform(I, fCPos, fWPos)
-a = 1 / (2*fWPos);
-b = -a * (fCPos-fWPos);
-I = a*I + b;
-I(I <= (fCPos-fWPos)) = 0;
-I(I >=(fCPos+fWPos)) = 1;
+
+I = (I-(fCPos-fWPos)) / (2*fWPos);
+I(I<0)=0;
+I(I>1)=1;
+% a = 1 / (2*fWPos);
+% b = -a * (fCPos-fWPos);
+% I = a*I + b;
+% I(I <= (fCPos-fWPos)) = 0;
+% I(I >=(fCPos+fWPos)) = 1;
 return;
 
 
@@ -340,9 +348,19 @@ a3bMaskVolume = getappdata(handles.figure1,'a3bMaskVolume');
 iRotationAxis = getappdata(handles.figure1,'iRotationAxis');
 bShowHighlights = getappdata(handles.figure1,'bShowHighlights');
 pt3fCrosshair = getappdata(handles.figure1,'pt3fCrosshair');
+Smoothing = get(handles.hSmoothness,'value');
+
 
 a2bMask = fnGetVolSlice(iRotationAxis, a3bMaskVolume,round(pt3fCrosshair(iRotationAxis)));
 a2fSlice = single(fnGetVolSlice(iRotationAxis, a3MainVolume,round(pt3fCrosshair(iRotationAxis))));
+
+
+if (Smoothing > 0)
+      gaussianWidth = Smoothing*2;
+      kernel1D = fspecial('gaussian',[ceil(10*gaussianWidth) 1],gaussianWidth);
+      a2fSlice=convn(convn(double(a2fSlice),kernel1D,'same'),kernel1D','same');
+end 
+
 strctHistogramStretch = getappdata(handles.figure1,'strctHistogramStretch');
 
 strColorScheme = getappdata(handles.figure1,'strColorScheme');
@@ -421,6 +439,13 @@ if (ishandle(hImage))
     set(hImage,'CData',min(1,max(0,a3fCdata)));
 end;
 
+strctHistogramStretch = getappdata(handles.figure1,'strctHistogramStretch');
+
+afX = strctHistogramStretch.m_fMin:strctHistogramStretch.m_fMax;
+afY = fnIntensityWindowTransform(afX, strctHistogramStretch.m_fCenter, strctHistogramStretch.m_fWidth);
+plot(handles.axesCurve, afX,afY);
+set(handles.axesCurve,'xlim',[afX(1), afX(end)]);
+set(handles.axesCurve,'ylim',[-0.1 1.1]);
 fnUpdateStatusLine(handles);
 drawnow
 return;
@@ -487,7 +512,11 @@ strctMouseDown = getappdata(handles.figure1,'strctMouseDown');
          iRotationAxis = getappdata(handles.figure1,'iRotationAxis');
          a3MainVolume = getappdata(handles.figure1,'a3MainVolume');
          pt3fCrosshair(iRotationAxis) = pt3fCrosshair(iRotationAxis) + afDelta(2);
-         pt3fCrosshair = max([1,1,1],min(pt3fCrosshair, size(a3MainVolume)));
+         sz = size(a3MainVolume);
+         if length(sz) < 3
+             sz(3) = 1;
+         end
+         pt3fCrosshair = max([1,1,1],min(pt3fCrosshair, sz));
          setappdata(handles.figure1,'pt3fCrosshair',pt3fCrosshair);
      case 'Contrast'
          fnSetNewContrastLevel(handles,afDelta);
@@ -520,7 +549,11 @@ switch iRotationAxis
         pt3iPos = [pt2fMousePos(1), pt3fCrosshair(2), pt2fMousePos(2)];
 end;
 a3MainVolume = getappdata(handles.figure1,'a3MainVolume');
-if fnInsideImage(handles,handles.axes1) && all(pt3iPos >= 1) && all(pt3iPos([2,1,3]) <= size(a3MainVolume))
+sz = size(a3MainVolume);
+if length(sz) < 3
+    sz(3) = 1;
+end
+if fnInsideImage(handles,handles.axes1) && all(pt3iPos >= 1) && all(pt3iPos([2,1,3]) <= sz)
     if bFastInterp
         fValue = fndllFastInterp3(a3MainVolume, pt3iPos(1),pt3iPos(2),pt3iPos(3));
     else
@@ -529,8 +562,12 @@ if fnInsideImage(handles,handles.axes1) && all(pt3iPos >= 1) && all(pt3iPos([2,1
 else
     fValue = NaN;
 end
-strStatusLine = sprintf('[%.2f %.2f %.2f] = %.4f. [%d %d %d] = %.4f',...
-    pt3iPos(1),pt3iPos(2),pt3iPos(3),fValue,round(pt3iPos(1)),round(pt3iPos(2)),round(pt3iPos(3)),fValue);
+
+
+strctHistogramStretch=getappdata(handles.figure1,'strctHistogramStretch');
+
+strStatusLine = sprintf('[C=%.0f, W=%.0f]. [%.2f %.2f %.2f] = %.4f. [%d %d %d] = %.4f',...
+    strctHistogramStretch.m_fCenter ,strctHistogramStretch.m_fWidth  ,pt3iPos(1),pt3iPos(2),pt3iPos(3),fValue,round(pt3iPos(1)),round(pt3iPos(2)),round(pt3iPos(3)),fValue);
 set(handles.hStatusLine,'String',strStatusLine);
 return;
 
@@ -564,3 +601,25 @@ function Untitled_4_Callback(hObject, eventdata, handles)
 
 function Untitled_1_Callback(hObject, eventdata, handles)
 
+
+
+% --- Executes on slider movement.
+function hSmoothness_Callback(hObject, eventdata, handles)
+% hObject    handle to hSmoothness (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'Value') returns position of slider
+%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
+fnInvalidate(handles);
+
+% --- Executes during object creation, after setting all properties.
+function hSmoothness_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to hSmoothness (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background.
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
+end

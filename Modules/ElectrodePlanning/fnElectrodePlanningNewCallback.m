@@ -67,6 +67,9 @@ switch strCallback
         fnSetRotateMode();
     case 'SetCrosshairMode'
         fnSetCrosshairMode();
+%     case 'SetStereotaxView'
+%         fnSetStereotaxCrossSections();
+%         fnInvalidate();
     case 'SetDefaultView'
         fnSetDefaultCrossSections();
         fnInvalidate();

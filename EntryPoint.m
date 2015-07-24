@@ -64,9 +64,26 @@ set(g_strctWindows.m_hFigure,'Units','Pixels',...
 if isnumeric(g_strctWindows.m_hFigure)
 fnMaximizeWindow(g_strctWindows.m_hFigure);
 else
-    fnMaximizeWindow(g_strctWindows.m_hFigure.Number);
+    try
+        
+        fnMaximizeWindow(g_strctWindows.m_hFigure.Number);
+    catch
+        set(g_strctWindows.m_hFigure.Number,'units','normalized','outerposition',[0 0 1 1])
+        set(g_strctWindows.m_hFigure.Number,'units','pixels');
+    end
+    
 end
 drawnow
+drawnow update
+% on a mac, allow some time
+if strcmpi(computer,'MACI64')
+    tic
+    while toc < 1
+        aiWindowSize = get(g_strctWindows.m_hFigure,'Position');
+        drawnow
+    end
+end
+
 aiWindowSize = get(g_strctWindows.m_hFigure,'Position');
 
 g_strctWindows.m_hFileMenu = uimenu(g_strctWindows.m_hFigure,'Label','File');
@@ -91,7 +108,12 @@ if ~exist(strConfigFile,'file')
     close(g_strctWindows.m_hFigure);
     return;
 end;
-strctConfig = fnMyXMLToStruct(strConfigFile);
+try
+    strctConfig = fnMyXMLToStruct(strConfigFile);
+catch
+    addpath(genpath(pwd()));
+    strctConfig = fnMyXMLToStruct(strConfigFile);
+end
 
 g_strctWindows. m_strDefaultFontName = strctConfig.m_strctGUI.m_strDefaultFontName;
 
