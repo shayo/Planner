@@ -48,16 +48,26 @@ function ret=fnMyCameraToolBar(varargin)
 persistent walk_flag
 
 % First argument might be figure handle
-if nargin>0 && isscalar(varargin{1}) && (isa(handle(varargin{1}),'hg.figure') || isa(handle(varargin{1}),'gbtmcos.figure'))
+try
+%if nargin>0 && isscalar(varargin{1}) && (isa(handle(varargin{1}),'hg.figure') || isa(handle(varargin{1}),'gbtmcos.figure'))
+ %   [hfig, haxes]=currenthandles(varargin{1})
+    
     [hfig,haxes] = currenthandles(varargin{1});
     vargin = {varargin{2:end}};
     nin = nargin-1;
-else
+catch
     [hfig,haxes] = currenthandles; % use gcf/gcbf
     vargin = varargin;
     nin = nargin;
 end
+% 
+% try
+%     X = hfig.Number;
+%     hfig = X;
+% catch
+% end
 
+    
 Udata = getUdata(hfig);
 r = [];
 

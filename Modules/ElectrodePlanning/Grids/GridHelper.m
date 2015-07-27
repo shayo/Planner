@@ -57,6 +57,7 @@ handles.output = hObject;
 setappdata(handles.figure1,'bMouseDown',false);
 if length(varargin) >= 1
     strCommand = varargin{1};
+    
     switch strCommand
         case 'InitNewGrid'
             fnMyCameraToolBar(handles.figure1,'show',handles.hGridAxes3D);
