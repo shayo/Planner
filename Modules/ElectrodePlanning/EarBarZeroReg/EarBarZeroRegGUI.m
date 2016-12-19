@@ -429,11 +429,11 @@ end;
 return;
 
 
-function fnMouseDown(obj,eventdata)
-return;
-
-function fnMouseUp(obj,eventdata)
-return;
+% function fnMouseDown(obj,eventdata)
+% return;
+% 
+% function fnMouseUp(obj,eventdata)
+% return;
 
 function fnFirstInvalidate(handles)
 strctAnatVol = getappdata(handles.figure1,'strctAnatVol');

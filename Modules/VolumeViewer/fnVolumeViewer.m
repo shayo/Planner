@@ -442,6 +442,9 @@ end;
 strctHistogramStretch = getappdata(handles.figure1,'strctHistogramStretch');
 
 afX = strctHistogramStretch.m_fMin:strctHistogramStretch.m_fMax;
+if length(afX) == 1
+    afX = linspace(strctHistogramStretch.m_fMin,strctHistogramStretch.m_fMax,100);
+end
 afY = fnIntensityWindowTransform(afX, strctHistogramStretch.m_fCenter, strctHistogramStretch.m_fWidth);
 plot(handles.axesCurve, afX,afY);
 set(handles.axesCurve,'xlim',[afX(1), afX(end)]);

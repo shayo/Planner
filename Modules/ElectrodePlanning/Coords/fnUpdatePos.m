@@ -2,6 +2,14 @@ function fnUpdatePos()
 global g_strctModule
 strctMouseOp = g_strctModule.m_strctPrevMouseOp;
 [pt3fPosIn3DSpace,pt3fPosInStereoSpace, pt3fVoxelCoordinate, strctCrossSection,pt3fPosInAtlasSpace]=fnGet3DCoord(strctMouseOp); %#ok
+% 
+% try
+% NearestValue = g_strctModule.m_acAnatVol{g_strctModule.m_iCurrAnatVol}.m_a3fVol( round(pt3fVoxelCoordinate(2)),round(pt3fVoxelCoordinate(1)),round(pt3fVoxelCoordinate(3)));
+% catch
+%     NearestValue=NaN;
+% end
+% [pt3fVoxelCoordinate(:)',NearestValue]
+
 
 if ~isempty(g_strctModule.m_acAnatVol)
     if isfield(g_strctModule.m_acAnatVol{g_strctModule.m_iCurrAnatVol},'m_astrctChambers')

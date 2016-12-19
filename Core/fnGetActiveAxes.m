@@ -7,6 +7,7 @@ end;
 for k=1:length(g_strctModule.m_strctPanel.m_ahAxes)
     
     hParent = get(g_strctModule.m_strctPanel.m_ahAxes(k),'parent');
+    
     if strcmp(get(hParent,'visible'),'off')
         continue;
     end;

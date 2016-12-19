@@ -764,7 +764,7 @@ if ~strcmpi(computer, 'PCWIN64')
 end;
 
 acVersions = {'Software\Solidworks\SolidWorks 2010','Software\Solidworks\SolidWorks 2011',...
-    'Software\Solidworks\SolidWorks 2012','Software\Solidworks\SolidWorks 2013','Software\Solidworks\SolidWorks 2014'};
+    'Software\Solidworks\SolidWorks 2012','Software\Solidworks\SolidWorks 2013','Software\Solidworks\SolidWorks 2014','Software\Solidworks\SolidWorks 2015','Software\Solidworks\SolidWorks 2016'};
 iVersion = -1;
 for iIter=1:length(acVersions)
    try
@@ -786,6 +786,12 @@ switch iVersion
         iErr = fndllSolidWorksRecordingChamber2013(P, Tilt, Rot, Rad, strctOutput.m_strTemplate, strctOutput.m_strOutputFile,strctOutput.m_bCloseSolidworksAfter);
     case 5
         iErr = fndllSolidWorksRecordingChamber2014(P, Tilt, Rot, Rad, strctOutput.m_strTemplate, strctOutput.m_strOutputFile,strctOutput.m_bCloseSolidworksAfter);
+  case 6
+        iErr = fndllSolidWorksRecordingChamber2015(P, Tilt, Rot, Rad, strctOutput.m_strTemplate, strctOutput.m_strOutputFile,strctOutput.m_bCloseSolidworksAfter);
+
+  case 7
+        iErr = fndllSolidWorksRecordingChamber2016(P, Tilt, Rot, Rad, strctOutput.m_strTemplate, strctOutput.m_strOutputFile,strctOutput.m_bCloseSolidworksAfter);
+
 
 end
 

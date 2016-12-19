@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FastInterp3", "FastInterp3\FastInterp3.vcxproj", "{F27977BF-A1CF-4091-ACB2-EFD8040C539F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FastInterp3Vol", "FastInterp3Vol\FastInterp3Vol.vcxproj", "{A11A5352-8204-4366-9143-EBA3B4832B4C}"
@@ -34,6 +36,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SolidWorksRecordingChamber2013", "SolidWorks2013\SolidWorksRecordingChamber2013.vcxproj", "{FF36094B-A389-4FBB-B887-C08EE69B245B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SolidWorksRecordingChamber2014", "SolidWorks2014\SolidWorksRecordingChamber2014.vcxproj", "{CBEF87D1-6E70-48C8-878E-9B512D5979C5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SolidWorksRecordingChamber2016", "SolidWorks2016\SolidWorksRecordingChamber2016.vcxproj", "{004831B7-864E-4BE6-BEF6-57BEAA949A65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -179,6 +183,14 @@ Global
 		{CBEF87D1-6E70-48C8-878E-9B512D5979C5}.Release|Win32.Build.0 = Release|Win32
 		{CBEF87D1-6E70-48C8-878E-9B512D5979C5}.Release|x64.ActiveCfg = Release|x64
 		{CBEF87D1-6E70-48C8-878E-9B512D5979C5}.Release|x64.Build.0 = Release|x64
+		{004831B7-864E-4BE6-BEF6-57BEAA949A65}.Debug|Win32.ActiveCfg = Debug|Win32
+		{004831B7-864E-4BE6-BEF6-57BEAA949A65}.Debug|Win32.Build.0 = Debug|Win32
+		{004831B7-864E-4BE6-BEF6-57BEAA949A65}.Debug|x64.ActiveCfg = Debug|x64
+		{004831B7-864E-4BE6-BEF6-57BEAA949A65}.Debug|x64.Build.0 = Debug|x64
+		{004831B7-864E-4BE6-BEF6-57BEAA949A65}.Release|Win32.ActiveCfg = Release|Win32
+		{004831B7-864E-4BE6-BEF6-57BEAA949A65}.Release|Win32.Build.0 = Release|Win32
+		{004831B7-864E-4BE6-BEF6-57BEAA949A65}.Release|x64.ActiveCfg = Release|x64
+		{004831B7-864E-4BE6-BEF6-57BEAA949A65}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
