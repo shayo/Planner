@@ -37,10 +37,10 @@ fnUpdateSurfacePatch();
 fnUpdateTargetList();
 
 fnUpdateGridList();
-try
-fnUpdateGridAxes();
-catch %#ok
-end
+% try
+% fnUpdateGridAxes();
+% catch 
+% end
 fnUpdateMarkerList();
 if (bSetDefaultView)
     fnSetDefaultCrossSections();
