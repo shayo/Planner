@@ -36,7 +36,7 @@ if iNumMarkers < 4
 end;
 
 % Plot the problem.
-figure(11);
+hfig = figure(11);
 clf;
 subplot(3,1,1);
 plot3(apt3fMarkersStereoTaticCoord(1,:),apt3fMarkersStereoTaticCoord(2,:),apt3fMarkersStereoTaticCoord(3,:),'b.');
@@ -45,7 +45,7 @@ for k=1:size(apt3fMarkersStereoTaticCoord,2)
     text(apt3fMarkersStereoTaticCoord(1,k),apt3fMarkersStereoTaticCoord(2,k),apt3fMarkersStereoTaticCoord(3,k),num2str(k));
 end;
 axis equal
-cameratoolbar(11);
+cameratoolbar(hfig);
 title('Stereotactic Markers');
 %figure(12);
 %clf;
