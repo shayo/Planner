@@ -3,7 +3,13 @@ function fnMaximizeWindow(hFigure)
 iNumTitle = get(hFigure,'NumberTitle');
 strFigureName= get(hFigure,'Name');
 
-strWindowName = ['maximize_',num2str(hFigure)];
+if isnumeric(hFigure)
+    figString = num2str(hFigure);
+else
+    figString = num2str(hFigure.Number);
+end
+
+strWindowName = ['maximize_', figString];
 set(hFigure,'Name',strWindowName,'NumberTitle','off');
 drawnow; % Make sure this takes effect
 if ~isunix
