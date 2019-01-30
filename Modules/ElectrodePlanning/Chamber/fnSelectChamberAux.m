@@ -17,7 +17,7 @@ if iChamber > 0
     
     
     fnUpdateGridList();
-    fnUpdateGridAxes();
+    %fnUpdateGridAxes();
     fnUpdateChamberMIP();
     fnInvalidate();
 end

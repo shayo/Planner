@@ -231,6 +231,18 @@ function hBrowseTemplate_Callback(hObject, eventdata, handles)
 % hObject    handle to hBrowseTemplate (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+[FileName,PathName] = uigetfile('.\Solidworks\*.*');
+strTemplateFile = fullfile(PathName, FileName);
+
+strctOutput = getappdata(handles.figure1,'strctOutput');
+if exist(strTemplateFile,'file')
+    strctOutput.m_strTemplate = strTemplateFile;
+    setappdata(handles.figure1,'strctOutput',strctOutput);
+else
+    set(hObject,'string',strctOutput.m_strTemplate );
+end
+set(handles.hTemplateFile, 'String',strctOutput.m_strTemplate);
+
 
 
 % --- Executes on button press in hBrowseOutput.
